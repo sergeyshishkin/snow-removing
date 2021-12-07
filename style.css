@@ -59,3 +59,13 @@ h1 {
     text-transform: uppercase;
     margin: 20px; /* Need replacement by relative unit*/ 
 }
+
+#startbutton {
+    padding: 20px 60px; /* Need replacement by relative unit*/
+    margin-bottom: 20px; /* Need replacement by relative unit*/
+    font-size: 25px; /* Need replacement by relative unit*/
+    background-color: rgb(93, 180, 122);
+    color: white;
+    font-weight: 500;
+    border-radius: 15px; /* Need replacement by relative unit*/
+}
