@@ -2,23 +2,24 @@ let myCanvas;
 let startButton;
 let snow = [];
 
+let drifts = [];
+
 
 function setup() {
     background('#34568B')
     myCanvas = createCanvas(600, 700)
-    myCanvas.parent('#canvas')
+    myCanvas.parent('#snow-canvas')
     frameRate(15)    
     //noLoop()
     
     //startButton = select('#startbutton');
     //startButton.mousePressed(startGame)
-
 }
 
 /* function startGame() {
     loop()       
-}
- */
+} */
+
 
 
 function draw() {
@@ -31,7 +32,7 @@ function draw() {
 
     background('#34568B')
 
-    for (let s = 0; s < 1000; s++) { // set constant for snowflakes quantity
+    for (let s = 0; s < 2000; s++) { // set constant for snowflakes quantity
         snow[s] = new Snowflake();
     }
 
@@ -45,37 +46,50 @@ function draw() {
     // https://p5js.org/reference/#/p5/push
     // https://p5js.org/reference/#/p5/pop
 
-    //arc(x, y, w, h, start, stop, [mode])
+    // arc(x, y, w, h, start, stop, [mode])
+    // arc(200, height, width, 150, -PI, 0, CHORD);    
     
-    fill(255)
     arc(200, height, width, 150, -PI, 0, CHORD);    
+    
+    squareColor = color(255);
+    squareColor.setAlpha(0 + 70 * millis() / 5000);
+    fill(squareColor)
+    arc(400, height, width, 250, -PI, 0, CHORD);    
 
-    fill(240)
-    arc(400, height, width, 150, -PI, 0, CHORD);    
+
+
 }
 
+
+// 
+    
 /* Гипотеза: сугроб - это объект класса snowDrift, фигура это arc.
-функция создает сугробы по таймингу.
+функция создает сугробы по таймингу и кладет их в массив Сугробы
 покопаться в транслейт, скейл, пуш, поп
 */ 
 
+/* Гипотеза №2 - использовать два скетча. Один над другим.
+На одном идет анимация снега. На другом образование сугробов     
 
+*/
 class snowDrift {
     constructor() {
-        this.x = x;
+
+    //constructor(x, y, w, h, s, st, color) {
+        /* this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
         this.start = s;
         this.stop = st;
-        this.mode = mode;
-        this.color = color;
+        this.color = color; */
     }
 
     showArc() {
-        fill(color);
+        fill('red');
         noStroke();
-        arc(x, y, w, h, s, st, CHORD)
+        arc(400, height, width, 150, -PI, 0, CHORD)
+        //arc(this.x, this.y, this.w, this.h, this.s, this.st, CHORD)
     }
 
 }
@@ -84,7 +98,7 @@ class Snowflake {
     constructor() {
         this.x = random(width)
         this.y = random(height)
-        this.r = 2; // Need replacement by relative unit
+        this.r = 1; // Need replacement by relative unit
     }
 
     show() {
