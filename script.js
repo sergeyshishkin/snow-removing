@@ -1,6 +1,6 @@
 let myCanvas;
 let startButton;
-
+let btn;
 let cY = 0; 
 
 function setup() {
@@ -19,15 +19,18 @@ function setup() {
 } */
 
 
-
 function draw() {
     background('#34568B')
-    // Variant 2 for snow animation
+
     for (let s = 0; s < 1000; s++) { // set constant for snowflakes quantity
+        fill(255)
         noStroke()
         circle(random(width), random(height), 2);
     }
 
+
+    // Variant 2 for snow animation
+    
     // https://p5js.org/reference/#/p5/push
     // https://p5js.org/reference/#/p5/pop
 
@@ -35,15 +38,27 @@ function draw() {
     // arc(200, height, width, 150, -PI, 0, CHORD);    
     
     fill(255)
-    arc(200, height, width, cY, -PI, 0, CHORD);    
+    arc(200, height, width, cY, -PI, 0, OPEN);    
     cY += 2
 
     fill(220)
-    arc(500, height, width, cY, -PI, 0, CHORD);    
+    arc(500, height, width, cY, -PI, 0, OPEN);    
     cY += 2
 
-}
- function doubleClicked() {
-     cY -= 400
- }
+    if (cY >= 400) {
+        doubleClicked()
+    }
 
+
+}
+
+
+function doubleClicked() {
+    cY -= 400
+}
+
+function myFunction() {
+    fill('pink')
+    circle(200, 200, 200)
+}
+    
