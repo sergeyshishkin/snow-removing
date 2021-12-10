@@ -4,6 +4,7 @@ let snow = [];
 
 let drifts = [];
 
+let cY = 0; 
 
 function setup() {
     background('#34568B')
@@ -49,17 +50,25 @@ function draw() {
     // arc(x, y, w, h, start, stop, [mode])
     // arc(200, height, width, 150, -PI, 0, CHORD);    
     
-    arc(200, height, width, 150, -PI, 0, CHORD);    
+    fill(255)
+    arc(200, height, width, cY, -PI, 0, CHORD);    
+    cY += 2
+
+    fill(220)
+    arc(500, height, width, cY, -PI, 0, CHORD);    
+    cY += 2
     
-    squareColor = color(255);
+    /* squareColor = color(255);
     squareColor.setAlpha(0 + 70 * millis() / 5000);
     fill(squareColor)
-    arc(400, height, width, 250, -PI, 0, CHORD);    
+    arc(400, height, width, 250, -PI, 0, CHORD);    */ 
 
 
 
 }
-
+ function doubleClicked() {
+     cY -= 400
+ }
 
 // 
     
@@ -72,6 +81,8 @@ function draw() {
 На одном идет анимация снега. На другом образование сугробов     
 
 */
+
+/*
 class snowDrift {
     constructor() {
 
@@ -82,7 +93,7 @@ class snowDrift {
         this.h = h;
         this.start = s;
         this.stop = st;
-        this.color = color; */
+        this.color = color;
     }
 
     showArc() {
@@ -92,7 +103,8 @@ class snowDrift {
         //arc(this.x, this.y, this.w, this.h, this.s, this.st, CHORD)
     }
 
-}
+} 
+*/
 
 class Snowflake {
     constructor() {
