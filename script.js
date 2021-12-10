@@ -47,6 +47,7 @@ function draw() {
 
     if (cY >= 400) {
         doubleClicked()
+        removing()
     }
 
 
@@ -55,6 +56,16 @@ function draw() {
 
 function doubleClicked() {
     cY -= 400
+    document.getElementById("popup").style.visibility = "visible";
+}
+
+// Как по клику вызвать круг, который будет прокатываться от края до края ?
+function removing() {
+    let x = 0;
+    fill('green')
+    circle(x, cY, 50)
+    x++;
+
 }
 
 function myFunction() {
