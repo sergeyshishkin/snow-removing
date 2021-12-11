@@ -48,22 +48,21 @@ function draw() {
     }
 
     if (Math.sign(cY) == -1) {
-        document.getElementById("btn").style.visibility = "hidden";
-        console.log(cY)
-
+        cY = 0;
     }
 
+    
 }
 // Добавить элемент соревновательности: показывать юзеру что он справляется все с большей трудностью
 // Типа: Вы тащите уже сложность х2, так держать
 
+setTimeout(showMessage, 3000)
+setInterval(speedUp, 6000)
 
-setInterval(showMessage, 3500)
 
 function speedUp() {
     speed += 5
 }
-setInterval(speedUp, 6000)
 
 function showMessage() {
     document.getElementById("popup").style.visibility = "visible";
