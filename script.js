@@ -3,6 +3,7 @@ let startButton;
 let btn;
 
 let cY = 0; 
+let speed = 5;
 
 function setup() {
     background('#34568B')
@@ -39,12 +40,10 @@ function draw() {
     fill(250)
     arc(350, height, width, cY, PI, 0);    // use relative unit
     
-    cY += 10
+    cY += speed;
 
-    if (cY == height / 2) { // use relative unit
-        showMessage()
-    }
-    else if (cY / 2 == height) {
+
+    if (cY / 2 > height) {
         loseGame()
     }
 
@@ -53,13 +52,22 @@ function draw() {
         console.log(cY)
 
     }
-}
 
+}
+// Добавить элемент соревновательности: показывать юзеру что он справляется все с большей трудностью
+// Типа: Вы тащите уже сложность х2, так держать
+
+
+setInterval(showMessage, 3500)
+
+function speedUp() {
+    speed += 5
+}
+setInterval(speedUp, 6000)
 
 function showMessage() {
     document.getElementById("popup").style.visibility = "visible";
     document.getElementById("btn").style.visibility = "visible";
-
 }
 
 document.getElementById('btn').onclick = function () {
