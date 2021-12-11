@@ -61,7 +61,7 @@ h1 {
     margin: 20px; /* Need replacement by relative unit*/ 
 }
 
-#startbutton {
+#start-button {
     padding: 20px 60px; /* Need replacement by relative unit*/
     margin-bottom: 20px; /* Need replacement by relative unit*/
     font-size: 25px; /* Need replacement by relative unit*/
@@ -87,7 +87,13 @@ h1 {
 
 }
 
+#message-box {
+    position: relative;
+}
+
 #btn {
+    position: absolute;
+    visibility: hidden;
     margin-top: 10px;
     padding: 10px;
     background-color: cyan;
@@ -95,4 +101,15 @@ h1 {
 
 #second-btn {
     display: none;
+}
+
+
+#end-game-message {
+    position: absolute;
+    top: 150px;
+    left: 160px;
+    padding: 30px;
+    width: 300px;
+    height: 150px;
+    background-color: pink;
 }

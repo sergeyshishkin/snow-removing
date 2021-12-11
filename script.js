@@ -12,13 +12,13 @@ function setup() {
     myCanvas = createCanvas(600, 700)
     myCanvas.parent('#canvas')
     frameRate(15)    
-    //noLoop()
-    
-    //startButton = select('#startbutton');
-    //startButton.mousePressed(startGame)
+    /* noLoop()
+    startButton = select('#start-button');
+    startButton.mousePressed(startGame) */
 }
 
 /* function startGame() {
+    document.getElementById("start-button").style.visibility = "hidden";
     loop()       
 } */
 
@@ -36,7 +36,7 @@ function draw() {
     fill(245)
     arc(500, height, width, cY, PI, 0);    // use relative unit
 
-    fill(220)
+    fill(210)
     arc(200, height, width, cY, PI, 0);    // use relative unit
     
     fill(235)
@@ -44,33 +44,38 @@ function draw() {
     
     cY += 5
 
-    if (cY == 400) { // use relative unit
+    if (cY == height / 2) { // use relative unit
         showMessage()
     }
-    else if (cY == 1000) { // use relative unit
-        showMessage()
-    }
-
     else if (cY / 2 == height) {
-        endGame()
+        loseGame()
     }
 }
 
 
 function showMessage() {
     document.getElementById("popup").style.visibility = "visible";
+    document.getElementById("btn").style.visibility = "visible";
+
 }
 
-    
 document.getElementById('btn').onclick = function () {
     cY -= 200
     document.getElementById("popup").style.visibility = "hidden";
 }
 
-
-function endGame() {
-    if (document.getElementById("popup").style.visibility = "visible") {
-        document.getElementById("popup").style.visibility = "hidden"
-    }
+function loseGame() {
+    document.getElementById("btn").style.visibility = "hidden";
+    document.getElementById("popup").style.visibility = "hidden";
     noLoop()
+}
+
+setTimeout(winGame, 10000)
+
+function winGame() {
+    noLoop()
+    document.getElementById("text-end").textContent = "YOU DID IT, YOU WON";
+    document.getElementById("target-link").href = "https://www.google.com";
+
+    
 }
