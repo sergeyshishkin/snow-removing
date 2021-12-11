@@ -23,10 +23,10 @@ function setup() {
 function draw() {
     background('#34568B')
 
-    for (let s = 0; s < 1000; s++) { // set constant for snowflakes quantity
+    for (let s = 0; s < 1500; s++) { // set constant for snowflakes quantity
         fill(255)
         noStroke()
-        circle(random(width), random(height), 2); // use relative unit
+        circle(random(width), random(height), 3); // use relative unit
     }
        
     
@@ -36,7 +36,7 @@ function draw() {
     fill(245)
     arc(200, height, width, cY, PI, 0);    // use relative unit
     
-    fill(255)
+    fill(250)
     arc(350, height, width, cY, PI, 0);    // use relative unit
     
     cY += 5
@@ -67,12 +67,11 @@ function loseGame() {
     document.getElementById("popup").style.visibility = "hidden";
     document.getElementById("end-game-message").style.visibility = "visible";
     document.getElementById("head-end").textContent = "UNFORTUNATELY, YOU LOSE";
-    document.getElementById("text-end").textContent = "Next time, use that";    
-    document.getElementById("target-link").value = "https://www.yahoo.com";
+    document.getElementById("target-link").href = "https://www.yahoo.com";    
     
 }
 
-//setTimeout(winGame, 10000)
+//setTimeout(winGame, 8000)
 
 function winGame() {
     noLoop()
@@ -81,6 +80,6 @@ function winGame() {
     document.getElementById("end-game-message").style.visibility = "visible";
     document.getElementById("head-end").textContent = "YOU DID IT, YOU WON";
     document.getElementById("text-end").textContent = "Take you reward here";    
-    document.getElementById("target-link").value = "https://www.google.com";
+    document.getElementById("target-link").href = "https://www.google.com";    
     
 }
