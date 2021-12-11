@@ -1,7 +1,11 @@
 let myCanvas;
 let startButton;
 let btn;
+
 let cY = 0; 
+let cX;
+
+let myY;
 
 function setup() {
     background('#34568B')
@@ -25,51 +29,48 @@ function draw() {
     for (let s = 0; s < 1000; s++) { // set constant for snowflakes quantity
         fill(255)
         noStroke()
-        circle(random(width), random(height), 2);
+        circle(random(width), random(height), 2); // use relative unit
     }
+       
 
-
-    // Variant 2 for snow animation
-    
-    // https://p5js.org/reference/#/p5/push
-    // https://p5js.org/reference/#/p5/pop
-
-    // arc(x, y, w, h, start, stop, [mode])
-    // arc(200, height, width, 150, -PI, 0, CHORD);    
-    
-    fill(255)
-    arc(200, height, width, cY, -PI, 0, OPEN);    
-    cY += 2
+    fill(245)
+    arc(500, height, width, cY, PI, 0);    // use relative unit
 
     fill(220)
-    arc(500, height, width, cY, -PI, 0, OPEN);    
-    cY += 2
+    arc(200, height, width, cY, PI, 0);    // use relative unit
+    
+    fill(235)
+    arc(350, height, width, cY, PI, 0);    // use relative unit
+    
+    cY += 5
 
-    if (cY >= 400) {
-        doubleClicked()
-        removing()
+    if (cY == 400) { // use relative unit
+        showMessage()
+    }
+    else if (cY == 1000) { // use relative unit
+        showMessage()
     }
 
-
+    else if (cY / 2 == height) {
+        endGame()
+    }
 }
 
 
-function doubleClicked() {
-    cY -= 400
+function showMessage() {
     document.getElementById("popup").style.visibility = "visible";
 }
 
-// Как по клику вызвать круг, который будет прокатываться от края до края ?
-function removing() {
-    let x = 0;
-    fill('green')
-    circle(x, cY, 50)
-    x++;
-
-}
-
-function myFunction() {
-    fill('pink')
-    circle(200, 200, 200)
-}
     
+document.getElementById('btn').onclick = function () {
+    cY -= 200
+    document.getElementById("popup").style.visibility = "hidden";
+}
+
+
+function endGame() {
+    if (document.getElementById("popup").style.visibility = "visible") {
+        document.getElementById("popup").style.visibility = "hidden"
+    }
+    noLoop()
+}
