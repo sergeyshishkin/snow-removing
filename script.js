@@ -8,7 +8,7 @@ function setup() {
     background('#34568B')
     myCanvas = createCanvas(600, 700)
     myCanvas.parent('#canvas')
-    frameRate(15)    
+    frameRate(17)    
     /* noLoop()
     startButton = select('#start-button');
     startButton.mousePressed(startGame) */
@@ -39,13 +39,19 @@ function draw() {
     fill(250)
     arc(350, height, width, cY, PI, 0);    // use relative unit
     
-    cY += 5
+    cY += 10
 
     if (cY == height / 2) { // use relative unit
         showMessage()
     }
     else if (cY / 2 == height) {
         loseGame()
+    }
+
+    if (Math.sign(cY) == -1) {
+        document.getElementById("btn").style.visibility = "hidden";
+        console.log(cY)
+
     }
 }
 
@@ -57,7 +63,7 @@ function showMessage() {
 }
 
 document.getElementById('btn').onclick = function () {
-    cY -= 200
+    cY -= 150
     document.getElementById("popup").style.visibility = "hidden";
 }
 
@@ -67,6 +73,7 @@ function loseGame() {
     document.getElementById("popup").style.visibility = "hidden";
     document.getElementById("end-game-message").style.visibility = "visible";
     document.getElementById("head-end").textContent = "UNFORTUNATELY, YOU LOSE";
+    document.getElementById("text-end").textContent = "Go there for smth";    
     document.getElementById("target-link").href = "https://www.yahoo.com";    
     
 }
