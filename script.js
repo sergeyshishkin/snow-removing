@@ -126,3 +126,11 @@ function winGame() {
     noLoop()
     
 }
+
+function repeatGame() {
+    clear()
+    document.getElementById("end-game-message").style.visibility = "hidden";
+    setup()
+    draw()   
+    // need update
+}
