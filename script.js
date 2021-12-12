@@ -7,12 +7,29 @@ let speed = 5;
 
 let snowAmount = 1500;
 
+
+let darkBg;
+let lightBg;
+
+let currentBg;
+
+function preload() {
+  darkBg = loadImage('dark-bg.jpg'); // Photo by <a href="https://unsplash.com/@lukechesser?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Luke Chesser</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  lightBg = loadImage('light-bg.jpg'); // Photo by <a href="https://unsplash.com/@davehoefler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dave Hoefler</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+currentBg = darkBg;
+
+}
+
 function setup() {
-    background('#34568B')
+    
 
     myCanvas = createCanvas(600, 700)
     myCanvas.parent('#canvas')
-    frameRate(17)    
+    image(currentBg, 0, 0);
+    //background('#34568B')
+
+    frameRate(17)   
+    //noSmooth() 
     /* noLoop()
     startButton = select('#start-button');
     startButton.mousePressed(startGame) */
@@ -25,7 +42,7 @@ function setup() {
 
 
 function draw() {
-    background('#34568B')
+    image(currentBg, 0, 0);
 
 
     for (let s = 0; s < snowAmount; s++) { // set constant for snowflakes quantity
@@ -105,7 +122,7 @@ function winGame() {
     document.getElementById("head-end").textContent = "YOU DID IT, YOU WON";
     document.getElementById("text-end").textContent = "Take you reward here";    
     document.getElementById("target-link").href = "https://www.google.com";    
-    
+    currentBg = lightBg;
     noLoop()
     
 }
