@@ -5,8 +5,11 @@ let btn;
 let cY = 0; 
 let speed = 5;
 
+let snowAmount = 1500;
+
 function setup() {
     background('#34568B')
+
     myCanvas = createCanvas(600, 700)
     myCanvas.parent('#canvas')
     frameRate(17)    
@@ -17,18 +20,20 @@ function setup() {
 
 /* function startGame() {
     document.getElementById("start-button").style.visibility = "hidden";
-    loop()       
+    loop()    
 } */
 
 
 function draw() {
     background('#34568B')
 
-    for (let s = 0; s < 1500; s++) { // set constant for snowflakes quantity
+
+    for (let s = 0; s < snowAmount; s++) { // set constant for snowflakes quantity
         fill(255)
         noStroke()
         circle(random(width), random(height), 3); // use relative unit
     }
+
        
     
     fill(255)
@@ -57,11 +62,11 @@ function draw() {
 // Типа: Вы тащите уже сложность х2, так держать
 
 setTimeout(showMessage, 3000)
-setInterval(speedUp, 6000)
+setInterval(speedUp, 5000)
 
 
 function speedUp() {
-    speed += 5
+    speed += 9
 }
 
 function showMessage() {
@@ -85,15 +90,22 @@ function loseGame() {
     
 }
 
-//setTimeout(winGame, 8000)
+setTimeout(function() {lessSnow(1000); }, 17000)
+setTimeout(function() {lessSnow(450); }, 18500)
+setTimeout(winGame, 19500)
+
+function lessSnow(reducedAmount) {
+    snowAmount -= reducedAmount;
+}
 
 function winGame() {
-    noLoop()
     document.getElementById("btn").style.visibility = "hidden";
     document.getElementById("popup").style.visibility = "hidden";
     document.getElementById("end-game-message").style.visibility = "visible";
     document.getElementById("head-end").textContent = "YOU DID IT, YOU WON";
     document.getElementById("text-end").textContent = "Take you reward here";    
     document.getElementById("target-link").href = "https://www.google.com";    
+    
+    noLoop()
     
 }
