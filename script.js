@@ -13,7 +13,6 @@ let lightBg;
 
 let currentBg;
 
-
 function preload() {
   darkBg = loadImage('dark-bg.jpg'); // Photo by <a href="https://unsplash.com/@lukechesser?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Luke Chesser</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   lightBg = loadImage('light-bg.jpg'); // Photo by <a href="https://unsplash.com/@davehoefler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dave Hoefler</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -42,15 +41,11 @@ function startGame() {
 
 function draw() {
     image(currentBg, 0, 0);
-
-
     for (let s = 0; s < snowAmount; s++) { // set constant for snowflakes quantity
         fill(255)
         noStroke()
         circle(random(width), random(height), 3); // use relative unit
-    }
-
-       
+    }   
     
     fill(255)
     arc(500, height, width, cY, PI, 0);    // use relative unit
@@ -64,29 +59,36 @@ function draw() {
     cY += speed;
 
     if (cY > height / 3 && cY < height / 2.5) { // может надо подтюнить
-        showMessage()
+        showMessage();
     }
-
+    
     else if (cY / 2 > height) {
         loseGame()
     }
-
+    
     if (Math.sign(cY) == -1) {
         cY = 0;
-    }
+    } 
 
-    console.log(speed)
-    
 }
 // Добавить элемент соревновательности: показывать юзеру что он справляется все с большей трудностью
 // Типа: Вы тащите уже сложность х2, так держать
 
-setInterval(speedUp, 5000)
+
+// This code don't work here, but works in draw(), unfortutately inproper
+    if (speed == 23) {
+        lessSnow(1000)
+    }
+    
+    else if (speed == 26) {
+        lessSnow(450)
+    }
+    
+    else if (speed == 28) {
+        winGame()
+    }
 
 
-function speedUp() {
-    speed += 9
-}
 
 function showMessage() {
     document.getElementById("popup").style.visibility = "visible";
@@ -95,6 +97,7 @@ function showMessage() {
 
 document.getElementById('btn').onclick = function () {
     cY -= 150
+    speed++;
     document.getElementById("popup").style.visibility = "hidden";
 }
 
@@ -105,16 +108,8 @@ function loseGame() {
     document.getElementById("head-end").textContent = "UNFORTUNATELY, YOU LOSE";
     document.getElementById("text-end").textContent = "Go there for smth";    
     document.getElementById("target-link").href = "https://www.yahoo.com";    
-    startingPoint = 1;
     noLoop()
-    
 }
-
-// как поставить точку отсчета для сокращения снега и выхода на победу?
-setTimeout(function() {lessSnow(1000); }, 17000)
-setTimeout(function() {lessSnow(450); }, 18500)
-setTimeout(winGame, 19500)
-
 
 function lessSnow(reducedAmount) {
     snowAmount -= reducedAmount;
@@ -129,14 +124,14 @@ function winGame() {
     document.getElementById("target-link").href = "https://www.google.com";    
     currentBg = lightBg;
     noLoop()
-    
 }
 
 function repeatGame() {
-    document.location.reload()
+    //document.location.reload()
     cY = 0;
     speed = 5;
     snowAmount = 1500;
     currentBg = darkBg;
     document.getElementById("end-game-message").style.visibility = "hidden";
+    loop()
 }
