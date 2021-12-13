@@ -13,6 +13,8 @@ let lightBg;
 
 let currentBg;
 
+let startingPoint = 0;
+
 function preload() {
   darkBg = loadImage('dark-bg.jpg'); // Photo by <a href="https://unsplash.com/@lukechesser?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Luke Chesser</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   lightBg = loadImage('light-bg.jpg'); // Photo by <a href="https://unsplash.com/@davehoefler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dave Hoefler</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -21,8 +23,6 @@ currentBg = darkBg;
 }
 
 function setup() {
-    
-
     myCanvas = createCanvas(600, 700)
     myCanvas.parent('#canvas')
     image(currentBg, 0, 0);
@@ -64,8 +64,11 @@ function draw() {
     
     cY += speed;
 
+    if (cY > height / 3 && cY < height / 2.5) { // может надо подтюнить
+        showMessage()
+    }
 
-    if (cY / 2 > height) {
+    else if (cY / 2 > height) {
         loseGame()
     }
 
@@ -73,12 +76,12 @@ function draw() {
         cY = 0;
     }
 
+    console.log(speed)
     
 }
 // Добавить элемент соревновательности: показывать юзеру что он справляется все с большей трудностью
 // Типа: Вы тащите уже сложность х2, так держать
 
-setTimeout(showMessage, 3000)
 setInterval(speedUp, 5000)
 
 
@@ -107,9 +110,11 @@ function loseGame() {
     
 }
 
-setTimeout(function() {lessSnow(1000); }, 17000)
-setTimeout(function() {lessSnow(450); }, 18500)
-setTimeout(winGame, 19500)
+if (startingPoint = 0) { // как поставить точку отсчета для сокращения снега и выхода на победу?
+    setTimeout(function() {lessSnow(1000); }, 17000)
+    setTimeout(function() {lessSnow(450); }, 18500)
+    setTimeout(winGame, 19500)
+}
 
 function lessSnow(reducedAmount) {
     snowAmount -= reducedAmount;
@@ -128,9 +133,11 @@ function winGame() {
 }
 
 function repeatGame() {
-    clear()
+    cY = 0;
+    speed = 5;
+    snowAmount = 1500;
+    currentBg = darkBg;
+    startingPoint = 0;
     document.getElementById("end-game-message").style.visibility = "hidden";
-    setup()
-    draw()   
-    // need update
+    loop()
 }
