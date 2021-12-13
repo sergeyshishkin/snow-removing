@@ -13,7 +13,6 @@ let lightBg;
 
 let currentBg;
 
-let startingPoint = 0;
 
 function preload() {
   darkBg = loadImage('dark-bg.jpg'); // Photo by <a href="https://unsplash.com/@lukechesser?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Luke Chesser</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -30,15 +29,15 @@ function setup() {
 
     frameRate(17)   
     //noSmooth() 
-    /* noLoop()
+    noLoop()
     startButton = select('#start-button');
-    startButton.mousePressed(startGame) */
+    startButton.mousePressed(startGame)
 }
 
-/* function startGame() {
+function startGame() {
     document.getElementById("start-button").style.visibility = "hidden";
     loop()    
-} */
+}
 
 
 function draw() {
@@ -100,21 +99,22 @@ document.getElementById('btn').onclick = function () {
 }
 
 function loseGame() {
-    noLoop()
     document.getElementById("btn").style.visibility = "hidden";
     document.getElementById("popup").style.visibility = "hidden";
     document.getElementById("end-game-message").style.visibility = "visible";
     document.getElementById("head-end").textContent = "UNFORTUNATELY, YOU LOSE";
     document.getElementById("text-end").textContent = "Go there for smth";    
     document.getElementById("target-link").href = "https://www.yahoo.com";    
+    startingPoint = 1;
+    noLoop()
     
 }
 
-if (startingPoint = 0) { // как поставить точку отсчета для сокращения снега и выхода на победу?
-    setTimeout(function() {lessSnow(1000); }, 17000)
-    setTimeout(function() {lessSnow(450); }, 18500)
-    setTimeout(winGame, 19500)
-}
+// как поставить точку отсчета для сокращения снега и выхода на победу?
+setTimeout(function() {lessSnow(1000); }, 17000)
+setTimeout(function() {lessSnow(450); }, 18500)
+setTimeout(winGame, 19500)
+
 
 function lessSnow(reducedAmount) {
     snowAmount -= reducedAmount;
@@ -133,11 +133,10 @@ function winGame() {
 }
 
 function repeatGame() {
+    document.location.reload()
     cY = 0;
     speed = 5;
     snowAmount = 1500;
     currentBg = darkBg;
-    startingPoint = 0;
     document.getElementById("end-game-message").style.visibility = "hidden";
-    loop()
 }
