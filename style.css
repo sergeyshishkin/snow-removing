@@ -114,3 +114,20 @@ h1 {
     height: 150px;
     background-color: pink;
 }
+
+#game-message{
+    visibility: hidden;
+    background-color: transparent;
+    position: relative;
+}
+
+#support-text {
+    visibility: hidden;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    color: yellowgreen;
+    font-size: 50px;
+    font-weight: 600;
+
+}

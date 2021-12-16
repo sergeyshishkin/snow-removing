@@ -3,7 +3,7 @@ let startButton;
 let btn;
 
 let cY = 0; 
-let speed = 15;
+let speed = 8;
 let snowAmount = 1500;
 
 let darkBg;
@@ -59,9 +59,16 @@ function draw() {
         showMessage();
     }
     
-
     if (speed == 20) {
         winGame();
+    }
+
+    else if (speed == 10) {
+        supportMessage("Speed it up")
+    }
+
+    else if (speed == 15) {
+        supportMessage("You're so close")
     }
 
     if (cY / 2 > height) {
@@ -71,8 +78,8 @@ function draw() {
     if (Math.sign(cY) == -1) {
         cY = 0;
     } 
-}
 
+}
 
 function showMessage() {
     document.getElementById("popup").style.visibility = "visible";
@@ -85,10 +92,18 @@ document.getElementById('btn').onclick = function () {
     document.getElementById("popup").style.visibility = "hidden";
 }
 
+function supportMessage(message) {
+    document.getElementById("support-text").style.visibility = "visible";
+    document.getElementById("support-text").textContent = message;
+}
 
+function hideSupportMessage() {
+    document.getElementById("support-text").style.visibility = "hidden";
 
+}
 
 function loseGame() {
+    document.getElementById("support-text").style.visibility = "hidden";
     document.getElementById("btn").style.visibility = "hidden";
     document.getElementById("popup").style.visibility = "hidden";
     document.getElementById("end-game-message").style.visibility = "visible";
@@ -101,6 +116,7 @@ function loseGame() {
 }
 
 function winGame() {
+    document.getElementById("support-text").style.visibility = "hidden";
     document.getElementById("btn").style.visibility = "hidden";
     document.getElementById("popup").style.visibility = "hidden";
     document.getElementById("end-game-message").style.visibility = "visible";
