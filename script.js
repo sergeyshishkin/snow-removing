@@ -62,32 +62,23 @@ function draw() {
         showMessage();
     }
     
+
+    if (speed == 10) {
+        winGame()
+    }
+
     else if (cY / 2 > height) {
         loseGame()
     }
     
+
     if (Math.sign(cY) == -1) {
         cY = 0;
     } 
 
+
+    
 }
-// Добавить элемент соревновательности: показывать юзеру что он справляется все с большей трудностью
-// Типа: Вы тащите уже сложность х2, так держать
-
-
-// This code don't work here, but works in draw(), unfortutately inproper
-    if (speed == 23) {
-        lessSnow(1000)
-    }
-    
-    else if (speed == 26) {
-        lessSnow(450)
-    }
-    
-    else if (speed == 28) {
-        winGame()
-    }
-
 
 
 function showMessage() {
@@ -109,10 +100,6 @@ function loseGame() {
     document.getElementById("text-end").textContent = "Go there for smth";    
     document.getElementById("target-link").href = "https://www.yahoo.com";    
     noLoop()
-}
-
-function lessSnow(reducedAmount) {
-    snowAmount -= reducedAmount;
 }
 
 function winGame() {
