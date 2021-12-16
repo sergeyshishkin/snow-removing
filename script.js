@@ -3,29 +3,26 @@ let startButton;
 let btn;
 
 let cY = 0; 
-let speed = 5;
-
+let speed = 15;
 let snowAmount = 1500;
-
 
 let darkBg;
 let lightBg;
-
 let currentBg;
 
 function preload() {
   darkBg = loadImage('dark-bg.jpg'); // Photo by <a href="https://unsplash.com/@lukechesser?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Luke Chesser</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   lightBg = loadImage('light-bg.jpg'); // Photo by <a href="https://unsplash.com/@davehoefler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dave Hoefler</a> on <a href="https://unsplash.com/backgrounds/colors/gradient?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-currentBg = darkBg;
-
+  currentBg = darkBg;
+  
 }
 
 function setup() {
     myCanvas = createCanvas(600, 700)
     myCanvas.parent('#canvas')
-    image(currentBg, 0, 0);
     //background('#34568B')
-
+    //image(currentBg, 0, 0);
+    
     frameRate(17)   
     //noSmooth() 
     noLoop()
@@ -63,21 +60,17 @@ function draw() {
     }
     
 
-    if (speed == 10) {
-        winGame()
+    if (speed == 20) {
+        winGame();
     }
 
-    else if (cY / 2 > height) {
-        loseGame()
+    if (cY / 2 > height) {
+        loseGame();
     }
-    
 
     if (Math.sign(cY) == -1) {
         cY = 0;
     } 
-
-
-    
 }
 
 
@@ -92,6 +85,9 @@ document.getElementById('btn').onclick = function () {
     document.getElementById("popup").style.visibility = "hidden";
 }
 
+
+
+
 function loseGame() {
     document.getElementById("btn").style.visibility = "hidden";
     document.getElementById("popup").style.visibility = "hidden";
@@ -99,6 +95,8 @@ function loseGame() {
     document.getElementById("head-end").textContent = "UNFORTUNATELY, YOU LOSE";
     document.getElementById("text-end").textContent = "Go there for smth";    
     document.getElementById("target-link").href = "https://www.yahoo.com";    
+    cY = 0;
+    snowAmount = 50;
     noLoop()
 }
 
@@ -110,7 +108,8 @@ function winGame() {
     document.getElementById("text-end").textContent = "Take you reward here";    
     document.getElementById("target-link").href = "https://www.google.com";    
     currentBg = lightBg;
-    noLoop()
+    cY = 0;
+    snowAmount = 50;
 }
 
 function repeatGame() {
